@@ -28,6 +28,9 @@ public class MangaInfoActivity extends AppCompatActivity {
         list.setOnItemClickListener(adapter);
 
         Manga manga = (Manga) getIntent().getSerializableExtra("manga_info");
+
+        setTitle(manga.getName());
+
         Crawler.viewManga(manga.getIndexUrl(), new MangafoxCrawlAlgorithm(this, adapter));
     }
 }
