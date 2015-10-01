@@ -1,42 +1,20 @@
 package kishido.mangaportal.crawler.impl;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.text.Html;
-import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import kishido.mangaportal.MangaInfoActivity;
-import kishido.mangaportal.adapter.MangaChaptersAdapter;
-import kishido.mangaportal.adapter.MangaListAdapter;
 import kishido.mangaportal.crawler.CrawlAlgorithm;
-import kishido.mangaportal.crawler.Crawler;
+import kishido.mangaportal.crawler.CrawlListener;
 import kishido.mangaportal.model.Manga;
 import kishido.mangaportal.model.MangaChapter;
 
 /**
  * Created by syspaulo on 9/29/2015.
  */
-public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnItemClickListener {
+public class MangafoxCrawlAlgorithm extends CrawlAlgorithm {
 
-    protected Activity activity;
-
-    protected MangaListAdapter mangaAdapter;
-    protected MangaChaptersAdapter chaptersAdapter;
-
-    public MangafoxCrawlAlgorithm(Activity act, MangaListAdapter adapter) {
-        activity = act;
-        mangaAdapter = adapter;
-    }
-
-    public MangafoxCrawlAlgorithm(Activity act, MangaChaptersAdapter adapter) {
-        activity = act;
-        chaptersAdapter = adapter;
+    public MangafoxCrawlAlgorithm(CrawlListener listener) {
+        super(listener);
     }
 
     @Override
@@ -60,6 +38,8 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
             }
         }
 
+        List<Manga> mangaList = new ArrayList<Manga>();
+
         for (int i=0; i+1<filtered.size(); i+=2) {
             Manga manga = new Manga();
 
@@ -78,11 +58,12 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
             manga.setImageUrl(image);
             manga.setIndexUrl(url);
 
-            mangaAdapter.add(manga);
+            mangaList.add(manga);
         }
 
-        mangaAdapter.notifyDataSetChanged();
-        mangaAdapter.setListener(this);
+        if (listener != null) {
+            listener.onMangaListObtained(mangaList);
+        }
     }
 
     @Override
@@ -103,6 +84,8 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
             }
         }
 
+        List<MangaChapter> chapterList = new ArrayList<MangaChapter>();
+
         for (int i=0; i+1<filtered.size(); i+=2) {
             MangaChapter chapter = new MangaChapter();
 
@@ -121,19 +104,11 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
             chapter.setNumber(num);
             chapter.setName(name);
 
-            chaptersAdapter.add(chapter);
+            chapterList.add(chapter);
         }
 
-        chaptersAdapter.notifyDataSetChanged();
-        chaptersAdapter.setListener(this);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        Manga manga = (Manga) mangaAdapter.getItem(i);
-
-        Intent intent = new Intent(activity, MangaInfoActivity.class);
-        intent.putExtra("manga_info", manga);
-        activity.startActivity(intent);
+        if (listener != null) {
+            listener.onChapterListObtained(chapterList);
+        }
     }
 }

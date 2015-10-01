@@ -31,6 +31,6 @@ public class MangaInfoActivity extends AppCompatActivity {
 
         setTitle(manga.getName());
 
-        Crawler.viewManga(manga.getIndexUrl(), new MangafoxCrawlAlgorithm(this, adapter));
+//        Crawler.viewManga(manga.getIndexUrl(), new MangafoxCrawlAlgorithm(this, adapter));
     }
 }

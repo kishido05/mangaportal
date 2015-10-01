@@ -25,6 +25,6 @@ public class MainActivity extends AppCompatActivity {
         list.setAdapter(arrayAdapter);
         list.setOnItemClickListener(arrayAdapter);
 
-        Crawler.lookup(Crawler.Site.MANGA_FOX, new MangafoxCrawlAlgorithm(this, arrayAdapter));
+ //       Crawler.lookup(Crawler.Site.MANGA_FOX, new MangafoxCrawlAlgorithm(this, arrayAdapter));
     }
 }

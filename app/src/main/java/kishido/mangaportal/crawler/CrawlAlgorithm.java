@@ -3,11 +3,17 @@ package kishido.mangaportal.crawler;
 /**
  * Created by syspaulo on 9/29/2015.
  */
-public interface CrawlAlgorithm {
+public abstract class CrawlAlgorithm {
 
-    public void error(Exception e);
+    protected CrawlListener listener;
 
-    public void list(String response);
+    public CrawlAlgorithm(CrawlListener listener) {
+        this.listener = listener;
+    }
 
-    public void view(String response);
+    public abstract void error(Exception e);
+
+    public abstract void list(String response);
+
+    public abstract void view(String response);
 }
