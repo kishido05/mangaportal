@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onChapterListObtained(List<MangaChapter> chapterList) {
-
+    public void onChapterListObtained(String status, String author, String desc, List<MangaChapter> chapterList) {
+        // do nothing
     }
 
     @Override

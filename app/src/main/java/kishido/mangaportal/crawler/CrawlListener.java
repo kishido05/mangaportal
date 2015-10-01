@@ -12,5 +12,5 @@ public interface CrawlListener {
 
     public void onMangaListObtained(List<Manga> mangaList);
 
-    public void onChapterListObtained(List<MangaChapter> chapterList);
+    public void onChapterListObtained(String status, String author, String desc, List<MangaChapter> chapterList);
 }

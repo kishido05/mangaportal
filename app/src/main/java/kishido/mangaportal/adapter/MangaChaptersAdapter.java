@@ -22,30 +22,22 @@ import kishido.mangaportal.model.MangaChapter;
 /**
  * Created by syspaulo on 9/29/2015.
  */
-public class MangaChaptersAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class MangaChaptersAdapter extends BaseAdapter {
 
     private Context context;
     private List<MangaChapter> chapterList;
-
-    private boolean isList = true;
-
-    protected AdapterView.OnItemClickListener listener;
 
     public MangaChaptersAdapter(Context context) {
         this.context = context;
         this.chapterList = new ArrayList<MangaChapter>();
     }
 
-    public void add(MangaChapter chapter) {
-        chapterList.add(chapter);
+    public void add(List<MangaChapter> chapterList) {
+        chapterList.addAll(chapterList);
     }
 
     public void clear() {
         chapterList.clear();
-    }
-
-    public void setListener(AdapterView.OnItemClickListener listener) {
-        this.listener = listener;
     }
 
     @Override
@@ -80,18 +72,5 @@ public class MangaChaptersAdapter extends BaseAdapter implements AdapterView.OnI
         tv.setText("Chapter " + chapter.getNumber() + " - " + Html.fromHtml(chapter.getName()).toString());
 
         return view;
-    }
-
-    // true = ListView
-    // false = GridView
-    public void setType(boolean isList) {
-        this.isList = isList;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (listener != null) {
-            listener.onItemClick(adapterView, view, i, l);
-        }
     }
 }
