@@ -6,7 +6,9 @@
     <ListView
         android:id="@+id/listManga"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:dividerHeight="10dp"
+        android:divider="@null"/>
 
     <GridView
         android:id="@+id/gridManga"
