@@ -57,4 +57,18 @@ public class Crawler {
             }
         });
     }
+
+    public static void viewManga(String url, final CrawlAlgorithm algorithm) {
+        client.get(url, null, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                algorithm.error(new Exception(throwable.getMessage()));
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                algorithm.view(responseString);
+            }
+        });
+    }
 }
