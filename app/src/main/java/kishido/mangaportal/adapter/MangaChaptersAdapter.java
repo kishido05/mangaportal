@@ -1,6 +1,7 @@
 package kishido.mangaportal.adapter;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,7 +77,7 @@ public class MangaChaptersAdapter extends BaseAdapter implements AdapterView.OnI
 
         MangaChapter chapter = chapterList.get(i);
 
-        tv.setText("Chapter " + chapter.getNumber() + " - " + chapter.getName());
+        tv.setText("Chapter " + chapter.getNumber() + " - " + Html.fromHtml(chapter.getName()).toString());
 
         return view;
     }

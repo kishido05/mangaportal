@@ -2,6 +2,7 @@ package kishido.mangaportal.crawler.impl;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -98,7 +99,7 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
         for (int i=0; i<parse.length; i++) {
             if (parse[i].contains("/manga/") || parse[i].contains("class=\"title nowrap")
                     || parse[i].contains("class=\"newch")) {
-                filtered.add(replaceSpecialCharacters(parse[i]));
+                filtered.add(parse[i]);
             }
         }
 
@@ -125,10 +126,6 @@ public class MangafoxCrawlAlgorithm implements CrawlAlgorithm, AdapterView.OnIte
 
         chaptersAdapter.notifyDataSetChanged();
         chaptersAdapter.setListener(this);
-    }
-
-    private String replaceSpecialCharacters(String source) {
-        return null;
     }
 
     @Override
