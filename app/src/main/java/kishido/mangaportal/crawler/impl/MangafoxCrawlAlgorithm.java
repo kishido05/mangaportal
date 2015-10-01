@@ -108,7 +108,7 @@ public class MangafoxCrawlAlgorithm extends CrawlAlgorithm {
         }
 
         if (listener != null) {
-            listener.onChapterListObtained(chapterList);
+            listener.onChapterListObtained(null, null, null, chapterList);
         }
     }
 }
