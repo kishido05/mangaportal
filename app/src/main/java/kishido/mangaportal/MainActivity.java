@@ -11,6 +11,7 @@ import java.util.List;
 import kishido.mangaportal.adapter.MangaListAdapter;
 import kishido.mangaportal.crawler.CrawlListener;
 import kishido.mangaportal.crawler.Crawler;
+import kishido.mangaportal.crawler.impl.MangaReaderCrawlAlgorithm;
 import kishido.mangaportal.crawler.impl.MangafoxCrawlAlgorithm;
 import kishido.mangaportal.model.Manga;
 import kishido.mangaportal.model.MangaChapter;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         list.setAdapter(arrayAdapter);
         list.setOnItemClickListener(this);
 
-        Crawler.lookup(Crawler.Site.MANGA_FOX, new MangafoxCrawlAlgorithm(this));
+        Crawler.lookup(Crawler.Site.MANGA_READER, new MangaReaderCrawlAlgorithm(this));
     }
 
     @Override
