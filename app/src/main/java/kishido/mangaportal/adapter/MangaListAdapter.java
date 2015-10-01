@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,30 +19,24 @@ import kishido.mangaportal.model.Manga;
 /**
  * Created by syspaulo on 9/29/2015.
  */
-public class MangaListAdapter extends BaseAdapter implements AdapterView.OnItemClickListener {
+public class MangaListAdapter extends BaseAdapter {
 
     private Context context;
     private List<Manga> mangaList;
 
     private boolean isList = true;
 
-    protected AdapterView.OnItemClickListener listener;
-
     public MangaListAdapter(Context context) {
         this.context = context;
         this.mangaList = new ArrayList<Manga>();
     }
 
-    public void add(Manga manga) {
-        mangaList.add(manga);
+    public void add(List<Manga> mangaList) {
+        this.mangaList.addAll(mangaList);
     }
 
     public void clear() {
         mangaList.clear();
-    }
-
-    public void setListener(AdapterView.OnItemClickListener listener) {
-        this.listener = listener;
     }
 
     @Override
@@ -89,13 +82,6 @@ public class MangaListAdapter extends BaseAdapter implements AdapterView.OnItemC
     // false = GridView
     public void setType(boolean isList) {
         this.isList = isList;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (listener != null) {
-            listener.onItemClick(adapterView, view, i, l);
-        }
     }
 
     static class ViewHolder {
