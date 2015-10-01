@@ -1,9 +1,11 @@
 package kishido.mangaportal.model;
 
+import java.io.Serializable;
+
 /**
  * Created by syspaulo on 9/29/2015.
  */
-public class Manga {
+public class Manga implements Serializable {
 
     protected String name;
     protected String imageUrl;
