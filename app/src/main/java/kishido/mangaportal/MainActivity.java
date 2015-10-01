@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listManga);
         arrayAdapter = new MangaListAdapter(this);
         list.setAdapter(arrayAdapter);
+        list.setOnItemClickListener(arrayAdapter);
 
-        Crawler.lookup(Crawler.Site.MANGA_FOX, new MangafoxCrawlAlgorithm(arrayAdapter));
+        Crawler.lookup(Crawler.Site.MANGA_FOX, new MangafoxCrawlAlgorithm(this, arrayAdapter));
     }
 }

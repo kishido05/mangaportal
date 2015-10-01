@@ -8,4 +8,6 @@ public interface CrawlAlgorithm {
     public void error(Exception e);
 
     public void list(String response);
+
+    public void view(String response);
 }
